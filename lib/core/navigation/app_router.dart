@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'routers.dart';
@@ -32,11 +34,24 @@ class AppRouter {
   GoRoute(
     path: Routes.imageInformation,
     builder: (context, state) {
-      final String path= state.extra as String;
-    return  BlocProvider(
-          create: (context) => ImageInformationCubit(GetIt.I.get()),
-          child:  ImageInformationFeatureScreen(path: path),
-        );}
+      
+final path = state.extra as String;
+final isNetwork = path.startsWith('http');
+final isAsset = path.startsWith('assets/');
+final isLocalFile = !isNetwork && !isAsset;
+
+return BlocProvider(
+  create: (context) {
+    final cubit = ImageInformationCubit(GetIt.I.get());
+
+    if (isLocalFile) {
+      cubit.getImageInformationMethod(file: File(path));
+    }
+
+    return cubit;
+  },
+  child: ImageInformationFeatureScreen(path: path),
+);}
   ),
 ],
 

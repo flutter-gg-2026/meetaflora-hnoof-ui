@@ -11,10 +11,6 @@ class ImageInformationFeatureScreen extends StatelessWidget {
   Widget build(BuildContext context) {
         final file = File(path);
 
-      context.read<ImageInformationCubit>().getImageInformationMethod(
-            file: file,
-          );
-    
 
     return Scaffold(
       appBar: AppBar(
@@ -35,7 +31,6 @@ class ImageInformationFeatureScreen extends StatelessWidget {
               child: Text(state.message),
             );
           }
-
 
 
           if (state is ImageInformationSuccessState) {
@@ -60,9 +55,9 @@ class ImageInformationFeatureScreen extends StatelessWidget {
                     data.plantName,
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
-                       Spacer(flex: 1,),
+                  
                   Text(data.description),
-                 Spacer(flex: 1,),
+                
                   Text(
                     'Care Tips',
                     style: Theme.of(context).textTheme.bodyMedium,

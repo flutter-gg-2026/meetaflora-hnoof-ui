@@ -3,52 +3,27 @@ import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 @lazySingleton
 class ImagePaickerService {
-  final _picker=ImagePicker();
- 
+  final ImagePicker _picker = ImagePicker();
 
   Future<File?> pickFromCamera() async {
     final XFile? image = await _picker.pickImage(
       source: ImageSource.camera,
-      
+      imageQuality: 70,
+      maxWidth: 80,
     );
 
-    if (image == null) return null;// it may not chose the user 
-
+    if (image == null) return null;
     return File(image.path);
   }
 
   Future<File?> pickFromGallery() async {
     final XFile? image = await _picker.pickImage(
       source: ImageSource.gallery,
+      imageQuality: 70,
+      maxWidth: 80,
     );
 
-    if (image == null)  return null;  // it may not chose 
+    if (image == null) return null;
     return File(image.path);
   }
-
 }
-
-/*@override
-  Future<XFile?> takePhoto({
-    ImagePickerCameraDelegateOptions options =
-        const ImagePickerCameraDelegateOptions(),
-  }) async {
-    return _takeAPhoto(options.preferredCameraDevice);
-  }
-
-  @override
-  Future<XFile?> takeVideo({
-    ImagePickerCameraDelegateOptions options =
-        const ImagePickerCameraDelegateOptions(),
-  }) async {
-    return _takeAVideo(options.preferredCameraDevice);
-  }
-}
-// ···
-void setUpCameraDelegate() {
-  final ImagePickerPlatform instance = ImagePickerPlatform.instance;
-  if (instance is CameraDelegatingImagePickerPlatform) {
-    instance.cameraDelegate = MyCameraDelegate();
-  }
-} */
-

@@ -45,7 +45,7 @@ class PlantImageFeatureScreen extends StatelessWidget {
                   ),
 
                  
-   Spacer(flex: 1,),
+  
                   ButtonWidget(
                     text: "Select from Gallery",
                     icon: Icons.photo_library,
@@ -75,13 +75,11 @@ class PlantImageFeatureScreen extends StatelessWidget {
                           },
                         ),
                         PlantImageWidget(
-                          imagePath:
-                              'https://www.easytogrowbulbs.com/cdn/shop/articles/plumeria-for-sale.jpg?v=1557257275&width=1100',
+                          imagePath:'assets/images/purple.webp' ,
                           onTap: () {
                             context.push(
                               Routes.imageInformation,
-                              extra:
-                                  'https://www.easytogrowbulbs.com/cdn/shop/articles/plumeria-for-sale.jpg?v=1557257275&width=1100',
+                              extra:'assets/images/purple.webp' 
                             );
                           },
                         ),

@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:injectable/injectable.dart';
 import 'package:multiple_result/multiple_result.dart';
 import 'package:meet_flora/core/errors/network_exceptions.dart';
@@ -13,13 +15,14 @@ import 'package:meet_flora/features/image_information/domain/repositories/image_
 class ImageInformationRepositoryData implements ImageInformationRepositoryDomain{
   final BaseImageInformationRemoteDataSource remoteDataSource;
 
-
   ImageInformationRepositoryData(this.remoteDataSource);
 
-@override
-  Future<Result<ImageInformationEntity, Failure>> getImageInformation() async {
+  @override
+  Future<Result<ImageInformationEntity, Failure>> getImageInformation({
+    required File file,
+  }) async {
     try {
-      final response = await remoteDataSource.getImageInformation();
+      final response = await remoteDataSource.getImageInformation(file: file);
       return Success(response.toEntity());
     } catch (error) {
       return Error(FailureExceptions.getException(error));

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ImageInformationModel {
 
- String get mimeType; String? get name;
+ String get plantName; String get description; String get careTips;
 /// Create a copy of ImageInformationModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $ImageInformationModelCopyWith<ImageInformationModel> get copyWith => _$ImageInf
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ImageInformationModel&&(identical(other.mimeType, mimeType) || other.mimeType == mimeType)&&(identical(other.name, name) || other.name == name));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ImageInformationModel&&(identical(other.plantName, plantName) || other.plantName == plantName)&&(identical(other.description, description) || other.description == description)&&(identical(other.careTips, careTips) || other.careTips == careTips));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,mimeType,name);
+int get hashCode => Object.hash(runtimeType,plantName,description,careTips);
 
 @override
 String toString() {
-  return 'ImageInformationModel(mimeType: $mimeType, name: $name)';
+  return 'ImageInformationModel(plantName: $plantName, description: $description, careTips: $careTips)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $ImageInformationModelCopyWith<$Res>  {
   factory $ImageInformationModelCopyWith(ImageInformationModel value, $Res Function(ImageInformationModel) _then) = _$ImageInformationModelCopyWithImpl;
 @useResult
 $Res call({
- String mimeType, String? name
+ String plantName, String description, String careTips
 });
 
 
@@ -65,11 +65,12 @@ class _$ImageInformationModelCopyWithImpl<$Res>
 
 /// Create a copy of ImageInformationModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? mimeType = null,Object? name = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? plantName = null,Object? description = null,Object? careTips = null,}) {
   return _then(_self.copyWith(
-mimeType: null == mimeType ? _self.mimeType : mimeType // ignore: cast_nullable_to_non_nullable
-as String,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String?,
+plantName: null == plantName ? _self.plantName : plantName // ignore: cast_nullable_to_non_nullable
+as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String,careTips: null == careTips ? _self.careTips : careTips // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -154,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String mimeType,  String? name)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String plantName,  String description,  String careTips)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ImageInformationModel() when $default != null:
-return $default(_that.mimeType,_that.name);case _:
+return $default(_that.plantName,_that.description,_that.careTips);case _:
   return orElse();
 
 }
@@ -175,10 +176,10 @@ return $default(_that.mimeType,_that.name);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String mimeType,  String? name)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String plantName,  String description,  String careTips)  $default,) {final _that = this;
 switch (_that) {
 case _ImageInformationModel():
-return $default(_that.mimeType,_that.name);case _:
+return $default(_that.plantName,_that.description,_that.careTips);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -195,10 +196,10 @@ return $default(_that.mimeType,_that.name);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String mimeType,  String? name)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String plantName,  String description,  String careTips)?  $default,) {final _that = this;
 switch (_that) {
 case _ImageInformationModel() when $default != null:
-return $default(_that.mimeType,_that.name);case _:
+return $default(_that.plantName,_that.description,_that.careTips);case _:
   return null;
 
 }
@@ -210,11 +211,12 @@ return $default(_that.mimeType,_that.name);case _:
 @JsonSerializable()
 
 class _ImageInformationModel implements ImageInformationModel {
-  const _ImageInformationModel({required this.mimeType, required this.name});
+  const _ImageInformationModel({required this.plantName, required this.description, required this.careTips});
   factory _ImageInformationModel.fromJson(Map<String, dynamic> json) => _$ImageInformationModelFromJson(json);
 
-@override final  String mimeType;
-@override final  String? name;
+@override final  String plantName;
+@override final  String description;
+@override final  String careTips;
 
 /// Create a copy of ImageInformationModel
 /// with the given fields replaced by the non-null parameter values.
@@ -229,16 +231,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ImageInformationModel&&(identical(other.mimeType, mimeType) || other.mimeType == mimeType)&&(identical(other.name, name) || other.name == name));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ImageInformationModel&&(identical(other.plantName, plantName) || other.plantName == plantName)&&(identical(other.description, description) || other.description == description)&&(identical(other.careTips, careTips) || other.careTips == careTips));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,mimeType,name);
+int get hashCode => Object.hash(runtimeType,plantName,description,careTips);
 
 @override
 String toString() {
-  return 'ImageInformationModel(mimeType: $mimeType, name: $name)';
+  return 'ImageInformationModel(plantName: $plantName, description: $description, careTips: $careTips)';
 }
 
 
@@ -249,7 +251,7 @@ abstract mixin class _$ImageInformationModelCopyWith<$Res> implements $ImageInfo
   factory _$ImageInformationModelCopyWith(_ImageInformationModel value, $Res Function(_ImageInformationModel) _then) = __$ImageInformationModelCopyWithImpl;
 @override @useResult
 $Res call({
- String mimeType, String? name
+ String plantName, String description, String careTips
 });
 
 
@@ -266,11 +268,12 @@ class __$ImageInformationModelCopyWithImpl<$Res>
 
 /// Create a copy of ImageInformationModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? mimeType = null,Object? name = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? plantName = null,Object? description = null,Object? careTips = null,}) {
   return _then(_ImageInformationModel(
-mimeType: null == mimeType ? _self.mimeType : mimeType // ignore: cast_nullable_to_non_nullable
-as String,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String?,
+plantName: null == plantName ? _self.plantName : plantName // ignore: cast_nullable_to_non_nullable
+as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String,careTips: null == careTips ? _self.careTips : careTips // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

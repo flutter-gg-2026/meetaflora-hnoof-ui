@@ -1,17 +1,17 @@
-import 'dart:typed_data';
-
 import 'package:equatable/equatable.dart';
 
 class ImageInformationEntity extends Equatable {
 
-  final String mimeType;
-  final String? name; 
+  final String plantName;
+  final String description;
+  final String careTips;
 
   const ImageInformationEntity({
-    required this.mimeType,
-    required this.name,
+required this.plantName,
+    required this.description,
+    required this.careTips,
   });
 
   @override
-  List<Object?> get props => [ mimeType, name];
+  List<Object?> get props => [ plantName, description,careTips];
 }

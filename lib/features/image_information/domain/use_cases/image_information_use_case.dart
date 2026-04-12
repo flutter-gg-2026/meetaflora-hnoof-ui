@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:multiple_result/multiple_result.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meet_flora/core/errors/failure.dart';
@@ -7,11 +9,13 @@ import 'package:meet_flora/features/image_information/domain/repositories/image_
 
 @lazySingleton
 class ImageInformationUseCase {
-  final ImageInformationRepositoryDomain _repositoryData;
+  final ImageInformationRepositoryDomain _repository;
 
-  ImageInformationUseCase(this._repositoryData);
+  ImageInformationUseCase(this._repository);
 
-   Future<Result<ImageInformationEntity, Failure>> getImageInformation() async {
-    return _repositoryData.getImageInformation();
+  Future<Result<ImageInformationEntity, Failure>> getImageInformation({
+    required File file,
+  }) async {
+    return _repository.getImageInformation(file: file);
   }
 }

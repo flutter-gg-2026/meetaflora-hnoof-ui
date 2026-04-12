@@ -13,7 +13,7 @@ import 'package:meet_flora/features/image_information/di/image_information_di.da
 
 Future<void> configureDependencies() async {
   final getIt = GetIt.instance;
-  getIt.init();
+   getIt.init();
     configurePlantImage(getIt);
     configureImageInformation(getIt);
 }

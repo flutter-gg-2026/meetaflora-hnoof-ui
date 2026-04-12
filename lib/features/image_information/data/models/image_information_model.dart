@@ -8,10 +8,9 @@ part 'image_information_model.g.dart';
 @freezed
 abstract class ImageInformationModel with _$ImageInformationModel {
   const factory ImageInformationModel({
-   
-    required String mimeType,
-    required String? name,
-    
+   required String plantName,
+    required String description,
+    required String careTips
   }) = _ImageInformationModel;
 
   factory ImageInformationModel.fromJson(Map<String, Object?> json) => _$ImageInformationModelFromJson(json);
@@ -20,6 +19,6 @@ abstract class ImageInformationModel with _$ImageInformationModel {
 
 extension ImageInformationModelMapper on ImageInformationModel {
   ImageInformationEntity toEntity() {
-    return ImageInformationEntity( mimeType: mimeType, name: name);
+    return ImageInformationEntity( plantName: plantName, description: description,careTips:careTips);
   }
   }

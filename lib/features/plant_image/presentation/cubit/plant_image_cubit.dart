@@ -21,28 +21,27 @@ class PlantImageCubit extends Cubit<PlantImageState> {
     );
   }
 
-  Future <void>pickFromGalleryMethodCubit ()async{
-    final result =await _plantImageUseCase.pickImageFromGallery();
-    result.match(
-    (onLeft)=> emit(PlantImageErrorState (message: onLeft.message)),
-    (onRight)=>emit(PlantImageErrorState (message: onRight))
-    );
-    
+  Future<void> pickFromGalleryMethodCubit() async {
+  emit(PlantImageLoadingState());
 
-  }
+  final result = await _plantImageUseCase.pickImageFromGallery();
 
-Future <void> pickFromCameraMethodCubit()async{
-final result = await _plantImageUseCase.pickImageFromCamera();
-    result.match(
-      (whenError) {// when the error shows get this message 
-        return emit(PlantImageErrorState (message: whenError.message));
+  result.match(
+    (error) => emit(PlantImageErrorState(message: error.message)),
+    (path) => emit(PlantImageSuccessState(imagePath: path)),
+  );
+}
 
-      },
-      ( success) {
-         return emit(PlantImageSuccessState(imagePath: success));
-       //here is when error result
-      },
-    );
+
+Future<void> pickFromCameraMethodCubit() async {
+  emit(PlantImageLoadingState());
+
+  final result = await _plantImageUseCase.pickImageFromCamera();
+
+  result.match(
+    (error) => emit(PlantImageErrorState(message: error.message)),
+    (path) => emit(PlantImageSuccessState(imagePath: path)),
+  );
 }
 //class PlantImageErrorState 
 //class PlantImageSuccessState

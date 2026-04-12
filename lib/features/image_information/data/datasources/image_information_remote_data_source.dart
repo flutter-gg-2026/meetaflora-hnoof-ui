@@ -1,32 +1,37 @@
+import 'dart:io';
 import 'package:injectable/injectable.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:meet_flora/core/services/local_keys_service.dart';
+import 'package:meet_flora/core/network/dio_client.dart';
+import 'package:meet_flora/core/network/gemni_api.dart';
 import 'package:meet_flora/features/image_information/data/models/image_information_model.dart';
 import 'package:meet_flora/core/errors/network_exceptions.dart';
 
 
 abstract class BaseImageInformationRemoteDataSource {
-  Future<ImageInformationModel> getImageInformation();
+  Future<ImageInformationModel> getImageInformation({
+    required File file,
+  });
 }
 
 @LazySingleton(as: BaseImageInformationRemoteDataSource)
-class ImageInformationRemoteDataSource implements BaseImageInformationRemoteDataSource {
- 
-  final SupabaseClient _supabase;
-  final LocalKeysService _localKeysService;
-  
-  
+class ImageInformationRemoteDataSource
+    implements BaseImageInformationRemoteDataSource {
+  final DioClient _dioClient;
 
-   ImageInformationRemoteDataSource(this._localKeysService, this._supabase);
+  ImageInformationRemoteDataSource(this._dioClient);
 
-
-
-    @override
-  Future<ImageInformationModel> getImageInformation() async {
+  @override
+  Future<ImageInformationModel> getImageInformation({
+    required File file,
+  }) async {
     try {
-      return ImageInformationModel(id: 1, firstName: "Last Name", lastName: "First Name");
+      final responseText = await _dioClient.analyzePlantImage(file: file);
+
+      return ImageInformationModel(
+        plantName: 'Plant Result',
+        description: responseText,
+        careTips: responseText,
+      );
     } catch (error) {
-     throw FailureExceptions.getException(error);
+      throw FailureExceptions.getException(error);
     }
-  }
-}
+  }}

@@ -1,7 +1,7 @@
 import 'dart:io';
-
 import 'package:image_picker/image_picker.dart';
-
+import 'package:injectable/injectable.dart';
+@lazySingleton
 class ImagePaickerService {
   final _picker=ImagePicker();
  

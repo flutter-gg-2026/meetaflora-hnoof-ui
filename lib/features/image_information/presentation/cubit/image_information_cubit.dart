@@ -1,27 +1,32 @@
+import 'dart:io';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meet_flora/features/image_information/domain/use_cases/image_information_use_case.dart';
 import 'package:meet_flora/features/image_information/presentation/cubit/image_information_state.dart';
 
 class ImageInformationCubit extends Cubit<ImageInformationState> {
-  final ImageInformationUseCase _imageInformationUseCase;
+ final ImageInformationUseCase _imageInformationUseCase;
 
-  ImageInformationCubit(this._imageInformationUseCase) : super(ImageInformationInitialState());
+  ImageInformationCubit(this._imageInformationUseCase)
+      : super(ImageInformationInitialState());
 
-  Future<void> getImageInformationMethod() async {
-    final result = await _imageInformationUseCase.getImageInformation();
+  Future<void> getImageInformationMethod({
+    required File file,
+  }) async {
+    emit(ImageInformationLoadingState());
+
+    final result = await _imageInformationUseCase.getImageInformation(
+      file: file,
+    );
+
     result.when(
       (success) {
-        //here is when success result
+        emit(ImageInformationSuccessState(data: success));
       },
       (whenError) {
-       //here is when error result
+        emit(ImageInformationErrorState(message: whenError.message));
       },
     );
   }
-
-  @override
-  Future<void> close() {
-    //here is when close cubit
-    return super.close();
-  }
 }
+//dart run build_runner build --delete-conflicting-outputs
